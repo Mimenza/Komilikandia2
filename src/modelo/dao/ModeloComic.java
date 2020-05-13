@@ -108,4 +108,24 @@ public class ModeloComic extends Conector{
 		
 	}
 	
+	
+	public void delete (int comicId) {
+		
+		try {
+			PreparedStatement preparedStatement = conexion.prepareStatement("delete from comics where id =?");
+			preparedStatement.setInt(1, comicId);
+			preparedStatement.execute();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		
+		
+		
+		
+	}
+	
+	
 }
