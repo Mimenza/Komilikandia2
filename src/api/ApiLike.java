@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.dao.ModeloComic;
 
 /**
- * Servlet implementation class apiDelete
+ * Servlet implementation class apiLike
  */
-@WebServlet("/apiDelete")
-public class apiDelete extends HttpServlet {
+@WebServlet("/apiLike")
+public class ApiLike extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
-    public apiDelete() {
+    
+    public ApiLike() {
         super();
         
     }
@@ -25,15 +25,18 @@ public class apiDelete extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int id=Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		
 		ModeloComic mComic = new ModeloComic();
-		mComic.delete(id);
+		mComic.addlike(id);
 		try {
-			mComic.getConexion().close();
+			mComic.getConexion();
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
+		
+		
+		
 	}
 
 	
