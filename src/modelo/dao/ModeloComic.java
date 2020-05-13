@@ -45,6 +45,7 @@ public class ModeloComic extends Conector{
 		return comics;
 	}
 	
+	
 	public Comic get(int idComic) {
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement("select * from comics inner join generos on generos.id=comics.genero_id where comics.id=?");
@@ -80,4 +81,31 @@ public class ModeloComic extends Conector{
 		return null;
 		
 	}
+
+	public void addlike(int comicId) {
+		
+		try {
+				PreparedStatement preparedStatement = conexion.prepareStatement("select num_likes from comics where comics.id =?");
+				preparedStatement.setInt(1, comicId);
+				ResultSet resultSet = preparedStatement.executeQuery();
+				
+				while (resultSet.next()) {
+					
+					int likes = resultSet.getInt("num_likes");
+					likes = likes++;
+					
+					preparedStatement=conexion.prepareStatement("update comics set num_likes = ? where comics.id = ?");
+					preparedStatement.setInt(1, likes);
+					preparedStatement.setInt(2, comicId);
+					preparedStatement.executeUpdate();
+					
+				}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 }
