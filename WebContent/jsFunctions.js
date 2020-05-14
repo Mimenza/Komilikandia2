@@ -46,6 +46,7 @@ function createHTML() {
 
 function showInfo() {
 	console.log("showinfo");
+	
 	console.log(event.target.dataset.id);
 	
     if (event.target.dataset.id != null) {
