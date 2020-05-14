@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.dao.ModeloComic;
 
 /**
- * Servlet implementation class apiDelete
+ * Servlet implementation class ApiDelete
  */
-@WebServlet("/apiDelete")
+@WebServlet("/ApiDelete")
 public class ApiDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -12,7 +12,7 @@ import modelo.dao.ModeloComic;
 /**
  * Servlet implementation class apiLike
  */
-@WebServlet("/apiLike")
+@WebServlet("/ApiLike")
 public class ApiLike extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

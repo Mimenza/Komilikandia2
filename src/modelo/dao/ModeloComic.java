@@ -92,7 +92,7 @@ public class ModeloComic extends Conector{
 				while (resultSet.next()) {
 					
 					int likes = resultSet.getInt("num_likes");
-					likes = likes++;
+					likes = likes +1;
 					
 					preparedStatement=conexion.prepareStatement("update comics set num_likes = ? where comics.id = ?");
 					preparedStatement.setInt(1, likes);

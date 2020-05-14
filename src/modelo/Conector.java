@@ -10,9 +10,7 @@ public class Conector {
 	
 	protected Connection conexion;
 
-	/**
-	 *Konexioa sortzen du datu basearekin
-	 */
+	
 	protected Conector() {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");

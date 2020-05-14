@@ -1,5 +1,19 @@
+body {
+ /* background: url(imagenes/negro.jpg) top left repeat */
+  
+ background-color: #282828;
+
+}
+
+.carousel slide{
+	
+	width:100%;
+	height:20%; 
+	
+}
+
 .container{
-    background-color:slategray;
+    background-color: #669DB3FF;
     
     }
 
@@ -9,9 +23,5 @@
     object-fit: cover;
 } */
  
-.card{
-    background-color: #a6a2a2;
-
-} 
 
 
