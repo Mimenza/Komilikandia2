@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   createHTML();
  
-  document.getElementById("idmainContainer").addEventListener("click", showInfo());
+  document.getElementById("idmainContainer").addEventListener("click", () => showinfo());
 })
 //--------------------------------------------------------------------------------------
 function createHTML() {
@@ -46,6 +46,8 @@ function createHTML() {
 
 function showInfo() {
 	console.log("showinfo");
+	console.log(event.target.dataset.id);
+	
     if (event.target.dataset.id != null) {
         $.ajax({
           url: './ApiComic?id=' + event.target.dataset.id,
