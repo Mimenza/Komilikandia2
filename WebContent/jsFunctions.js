@@ -135,7 +135,6 @@ function deleteComic(id) {
 		$.ajax({
 			url : './ApiDelete?id=' + id,
 			success : function(data) {
-				confirm("Datuak borratu egingo dira , ziur zaude?");
 				location.reload();
 			},
 			error : function() {
