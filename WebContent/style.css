@@ -1,7 +1,7 @@
 body {
- /* background: url(imagenes/negro.jpg) top left repeat */
+   background: url(imagenes/gris.jpg) top left repeat  
   
- background-color: #282828;
+  /* background-color: red; */ 
 
 }
 
@@ -13,7 +13,7 @@ body {
 }
 
 .container{
-    background-color: #669DB3FF;
+    background-color: grey;
     
     }
 
