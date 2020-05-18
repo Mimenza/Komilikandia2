@@ -155,7 +155,7 @@ function addLike(id) {
 		success : function(myJsonObject) {
 			console.log("bien")
 			createHTML();
-			location.reload();
+			// location.reload(); // hau bideoan ez duzu atera. Ez dauka zentzurik createHTML()-ren atzetik orria berriz kargatzea
 
 		},
 		error : function() {
