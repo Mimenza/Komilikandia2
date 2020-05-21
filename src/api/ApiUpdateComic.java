@@ -1,6 +1,7 @@
 package api;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,9 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import modelo.bean.Comic;
 import modelo.bean.Genero;
 import modelo.dao.ModeloComic;
+
+
 
 
 @WebServlet("/ApiUpdateComic")
@@ -23,7 +28,7 @@ public class ApiUpdateComic extends HttpServlet {
    
     public ApiUpdateComic() {
         super();
-        
+       
     }
 
 	
@@ -31,50 +36,71 @@ public class ApiUpdateComic extends HttpServlet {
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+
+	
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//datuak jaso
-				int id = Integer.parseInt(request.getParameter("id"));
-				String nombre = request.getParameter("nombre");
-				String titulo = request.getParameter("titulo");
-				int num = Integer.parseInt(request.getParameter("num"));
-				
-				Date fecha_publicacion = null;
-				SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-				try {
-					fecha_publicacion = formato.parse(request.getParameter("fecha_publicacion"));
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				
-				String imagen = request.getParameter("imagen");
-				int num_likes = Integer.parseInt(request.getParameter("num_likes"));
-				int genero_id = Integer.parseInt(request.getParameter("genero_id"));
-				
-				
-				//sortu aktibidade objektu bat
-				Comic comic = new Comic();
-				//jasotako datuekin setak egin
-				comic.setId(id);
-				comic.setNombre(nombre);
-				comic.setTitulo(titulo);
-				comic.setNum(num);
-				comic.setFecha_publicacion(fecha_publicacion);
-				comic.setImagen(imagen);
-				comic.setNum_likes(num_likes);
-				
-				
-//				comic.setGenero(genero);
-			
-				
-				//modeloa sortu
-				ModeloComic mComic = new ModeloComic();
-				//inserta egin
-				mComic.update(comic);
-				
-				//VerComics kontrolatzaileari deitu
-				response.sendRedirect("ApiComics");
-		  }
+		
+//		datuak jaso
+		request.setCharacterEncoding("UTF-8"); //enieak eta ondo irakurtzeko
+		String jsonComic = request.getParameter("comic");
+		
+		
+		
+		System.out.println(jsonComic);
+		JSONObject jsonObject = new JSONObject(jsonComic);
+		
+//		komiki objektua sortu
+		
+		Comic comic = new Comic();
 
+		Date fecha_publicacion =null;
+		
+		SimpleDateFormat sdt = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			
+			fecha_publicacion = sdt.parse(jsonObject.getString("fecha_publicacion"));
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		comic.setFecha_publicacion(fecha_publicacion);
+
+//		comic.setGenero(jsonObject.get("genero"));
+				
+		comic.setImagen(jsonObject.getString("imagen"));
+		comic.setNombre(jsonObject.getString("nombre"));
+		comic.setNum(jsonObject.getInt("num"));
+		comic.setNum_likes(jsonObject.getInt("num_likes"));
+		comic.setTitulo(jsonObject.getString("titulo"));
+
+		
+		
+		ModeloComic mComic = new ModeloComic();
+		
+		if(!mComic.exist(jsonObject.getInt("id"))){ //exist 
+			//balidazioa ok
+
+			mComic.update(comic);
+			
+			try {
+				mComic.getConexion().close();
+			} catch (SQLException e) {
+				System.out.println("Errorea conexioa ixtean");
+				e.printStackTrace();
+			}
+			
+			response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
+			response.setCharacterEncoding("UTF-8");
+			
+		}else {//balidazioa NOK
+//			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Balidatzean errorea");
+		}
+		response.sendRedirect("ApiComics");
+	}
 }
+

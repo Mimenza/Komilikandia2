@@ -1,9 +1,16 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
+	
+	var myArr = new Array();
+	
 	createHTML();
+	
 
 	document.getElementById("idmainContainer").addEventListener("click",
 			showInfo);
+	
+	document.getElementById("push").addEventListener("click", () => pushData(myArr));
+	
 })
 // --------------------------------------------------------------------------------------
 function createHTML() {
@@ -135,3 +142,36 @@ function addLike(id) {
 
 }
 
+function pushData(myArr)
+//datuak irakurri eta  array batean gorde
+{
+  var fecha_publicacion = document.getElementById("fecha_publicacion").value;
+  
+  var id = document.getElementById("id").value;
+  
+  var imagen = document.getElementById("imagen").value;
+  
+  var nombre = document.getElementById("nombre").value;
+  
+  var num = document.getElementById("num").value;
+  
+  var num_likes = document.getElementById("num_likes").value;
+  
+  var titulo = document.getElementById("titulo").value;
+  
+  var genero_id = document.getElementById("genero_id").value;  
+  
+  
+  
+  
+
+  var comic = { "fecha_publicacion": fecha_publicacion, "id": id,"num_likes": num_likes, "num": num,"nombre": nombre, "imagen": imagen,"titulo": titulo, "genero_id": genero_id };
+
+  
+
+  myArr.push(comic);
+  
+   
+  console.log(JSON.stringify(myArr));
+  
+}

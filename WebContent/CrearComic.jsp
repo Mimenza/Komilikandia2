@@ -18,7 +18,9 @@
 	<div class="container mt-3">
 		<h1>Formulario para crear un Comic</h1>
 
-		<form action="ApiInsertComic" method="POST">
+<!-- action="ApiInsertComic" -->
+
+		<form method="POST">
 			<div class="form-group">
 				<label for="id">Id Comic</label>
 				<input type="text" class="form-control" id="id" name="id">
@@ -59,9 +61,8 @@
 				<input type="text" class="form-control" id="genero_id" name="genero_id">
 			</div>
 			
-			<button type="submit"  class="btn btn-primary">Submit</button>
-			
-			
+			<button type="submit" id="push" class="btn btn-primary">Submit</button>
+						
 		</form>
 
 	</div>

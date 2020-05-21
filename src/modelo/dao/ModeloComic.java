@@ -166,4 +166,31 @@ public void update(Comic comic) {
         e.printStackTrace();
    }
 }
+
+
+public boolean exist(int comicId) {
+	
+		try {
+			PreparedStatement pst = conexion.prepareStatement("select id from comics where id =?");
+			pst.setInt(1, comicId);
+			ResultSet rs = pst.executeQuery();
+			
+			
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
+            }
+ 
+			
+		
+		} catch (Exception e) {
+			
+		}
+		return null != null;
+	
 }
+
+}
+
+
