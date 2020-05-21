@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Crear Actividad</title>
+    <title>Crear comic</title>
   </head>
    
   <body>
@@ -43,7 +43,8 @@
 
 			<div class="form-group">
 				<label for="fecha_publicacion">Fecha_publicacion</label>
-				<input type="text" class="form-control" id="fecha_publicacion" name="fecha_publicacion">
+				<input type="text" class="form-control" id="fecha_publicacion" name="fecha_publicacion"
+				value="XXXX-MM-DD">
 			</div>
 
 			<div class="form-group">
@@ -57,9 +58,14 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="genero_id">genero_id</label>
-				<input type="text" class="form-control" id="genero_id" name="genero_id">
-			</div>
+                    <label>Select Generos:</label>
+                    <select id="genero_id">
+                        <!-- insert JSON here -->
+                        
+                        
+                        
+                    </select>
+                </div>
 			
 			<button type="submit" id="push" class="btn btn-primary">Submit</button>
 						
@@ -80,6 +86,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		crossorigin="anonymous"></script>
+		
+	<script type="text/javascript" src="jsFunctions.js"></script>	
 </body>
 
     <!-- Optional JavaScript -->

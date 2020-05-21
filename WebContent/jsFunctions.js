@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-
+	fillSelect();
 	
 	var myArr = new Array();
 	
+	
+	
 	createHTML();
+	
 	
 
 	document.getElementById("idmainContainer").addEventListener("click",
@@ -142,6 +145,29 @@ function addLike(id) {
 
 }
 
+function fillSelect() {		
+	console.log("generos");
+	  $.ajax({
+	    url:'./ApiGeneros',
+	    dataType: 'json',	    
+	    success: function (myJsonObject) {
+	      var myHtml = "";
+	      for (let i = 0; i < myJsonObject.length; i++) {
+	        myHtml = "<option value='" + myJsonObject[i].nombre + "'>" + myJsonObject[i].id + "</option>"
+	        
+	        document.getElementById("genero_id").innerHTML += myHtml;       
+	      }
+	    },
+	    error: function (xhr) {
+	      alert("An AJAX error occured: " + xhr.status + " " + xhr.statusText);
+	    }
+	  });
+	}
+
+
+
+
+
 function pushData(myArr)
 //datuak irakurri eta  array batean gorde
 {
@@ -161,9 +187,7 @@ function pushData(myArr)
   
   var genero_id = document.getElementById("genero_id").value;  
   
-  
-  
-  
+    
 
   var comic = { "fecha_publicacion": fecha_publicacion, "id": id,"num_likes": num_likes, "num": num,"nombre": nombre, "imagen": imagen,"titulo": titulo, "genero_id": genero_id };
 
