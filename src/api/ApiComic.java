@@ -25,7 +25,7 @@ public class ApiComic extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		ModeloComic mComic = new ModeloComic();
