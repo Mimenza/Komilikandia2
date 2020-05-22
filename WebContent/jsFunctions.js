@@ -2,15 +2,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	fillSelect();
 	
 	var myArr = new Array();
-	
-	
-	
-	createHTML();
-	
-	
+		
+	createHTML();	
 
-	document.getElementById("idmainContainer").addEventListener("click",
-			showInfo);
+	document.getElementById("idmainContainer").addEventListener("click",showInfo);
 	
 	document.getElementById("push").addEventListener("click", () => pushData(myArr));
 	
@@ -49,7 +44,7 @@ function createHTML() {
 								+ '</p>\
         				<button type="button" class="btn text-white" style="background-color:#444444" data-toggle="modal" data-id='
 								+ myJsonObject[i].id
-								+ ' data-target="#myModal">Más info</button></div>\
+								+ ' data-target="#myModal" >Más info</button></div>\
         				<button type="button" onclick="addLike('
 								+ myJsonObject[i].id
 								+ ')" style="background-color: #F0F6F7FF">   <img src="imagenes/up.png" class=" " width="20%" > : '
@@ -99,9 +94,7 @@ function showmodal(myJsonObject) {
 	var modalFooterHTML = "<button class='btn btn-lg btn-danger' onclick='deleteComic("
 			+ myJsonObject.id
 			+ ")'> <div style='text-align:center;'><i class='fa fa-trash'></i></div>Del</button>"
-			+ "<button class='btn btn-lg btn-warning' onclick='updateComic("
-			+ myJsonObject.id
-			+ ")'> <div style='text-align:center;'><i class='fa fa-history'></i></div>Update</button>"
+			+ "<a class='btn btn-success btn-lg text-white  text-center' href='UpdateComic'>Update</a>"
 			+ "<button type='button' class='btn btn-primary btn-lg' data-dismiss='modal'>Close</button>";
 
 	document.getElementById("modal-header").innerHTML = modalHeaderHTML;
@@ -163,10 +156,6 @@ function fillSelect() {
 	    }
 	  });
 	}
-
-
-
-
 
 function pushData(myArr)
 //datuak irakurri eta  array batean gorde

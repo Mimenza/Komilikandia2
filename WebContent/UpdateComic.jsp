@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+   
+ <%@ page import="modelo.bean.Comic"%>
+    
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+ <%--  <%@ Comic comic =(Comic)request.getAttribute()Comic) %>  --%> 
+    
+    
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,38 +31,45 @@
 		<form method="POST">
 			<div class="form-group">
 				<label for="id">Id Comic</label>
-				<input type="text" class="form-control" id="id" name="id">
+				<input type="text" class="form-control" id="id" name="id"
+				value="${comic.getId}">
 			</div>
 
 			<div class="form-group">
 				<label for="nombre">Nombre</label>
-				<input type="text" class="form-control" id="nombre" name="nombre">
+				<input type="text" class="form-control" id="nombre" name="nombre"
+				value="${comic.getNombre}">
 			</div>
 
 			<div class="form-group">
 				<label for="titulo">Titulo</label>
-				<input type="text" class="form-control" id="titulo" name="titulo">
+				<input type="text" class="form-control" id="titulo" name="titulo"
+				value="${comic.getTitulo}">
 			</div>
 
 			<div class="form-group">
 				<label for="num">Num</label>
-				<input type="text" class="form-control" id="num" name="num">
+				<input type="text" class="form-control" id="num" name="num"
+				value="${comic.getNum}">
 			</div>
 
 			<div class="form-group">
 				<label for="fecha_publicacion">Fecha_publicacion</label>
 				<input type="text" class="form-control" id="fecha_publicacion" name="fecha_publicacion"
-				value="XXXX-MM-DD">
+				value="${comic.getFecha_publicacion}">
 			</div>
 
 			<div class="form-group">
 				<label for="imagen">link de la imagen</label>
-				<input type="text" class="form-control" id="imagen" name="imagen">
+				<input type="text" class="form-control" id="imagen" name="imagen"
+				value="${comic.getImagen}">
+				
 			</div>
 			
 			<div class="form-group">
 				<label for="num_likes">Num_likes</label>
-				<input type="text" class="form-control" id="num_likes" name="num_likes">
+				<input type="text" class="form-control" id="num_likes" name="num_likes"
+				value="${comic.getNum_likes}">
 			</div>
 			
 			<div class="form-group">
@@ -65,7 +80,7 @@
                     </select>
                 </div>
 			
-			<button type="submit" id="push" class="btn btn-primary">Submit</button>
+			<button type="button" class="btn text-white" style="background-color:#444444" data-toggle="modal" data-id='+  myJsonObject[i].id + ' data-target="#myModal">Submit</button></div>
 						
 		</form>
 
