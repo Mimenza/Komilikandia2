@@ -69,7 +69,11 @@ public class ApiInsertComic extends HttpServlet {
 		
 		comic.setFecha_publicacion(fecha_publicacion);
 
-//		comic.setGenero(jsonObject.get("genero"));
+		Genero genero = new Genero();
+		
+		genero.setId(jsonObject.getInt("genero_id"));
+		
+		comic.setGenero(genero);
 		
 		comic.setId(jsonObject.getInt("id"));
 		comic.setImagen(jsonObject.getString("imagen"));
@@ -82,7 +86,7 @@ public class ApiInsertComic extends HttpServlet {
 		
 		ModeloComic mComic = new ModeloComic();
 		
-		if(mComic.exist(jsonObject.getInt("id"))){   //exist 
+		//if(!mComic.exist(comic.getTitulo())){   //exist 
 			//balidazioa ok
 
 			mComic.insert(comic);
@@ -97,10 +101,10 @@ public class ApiInsertComic extends HttpServlet {
 			response.setHeader("Access-Control-Allow-Origin","*"); //jsonp deia denean ez da behar
 			response.setCharacterEncoding("UTF-8");
 			
-		}else {//balidazioa NOK
+	//	}else {//balidazioa NOK
 //			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Balidatzean errorea");
-		}
+		//	response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Balidatzean errorea");
+	//	}
 		response.sendRedirect("ApiComics");
 	}
 }

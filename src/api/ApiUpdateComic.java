@@ -69,19 +69,24 @@ public class ApiUpdateComic extends HttpServlet {
 		
 		comic.setFecha_publicacion(fecha_publicacion);
 
-		comic.setGeneroId(jsonObject.getInt("genero_id"));
-				
+		
+		Genero genero = new Genero();
+		
+		genero.setId(jsonObject.getInt("genero_id"));
+		
+		comic.setGenero(genero);
+		
 		comic.setImagen(jsonObject.getString("imagen"));
 		comic.setNombre(jsonObject.getString("nombre"));
 		comic.setNum(jsonObject.getInt("num"));
 		comic.setNum_likes(jsonObject.getInt("num_likes"));
 		comic.setTitulo(jsonObject.getString("titulo"));
-
+		comic.setId(jsonObject.getInt("id"));
 		
 		
 		ModeloComic mComic = new ModeloComic();
 		
-		if(!mComic.exist(jsonObject.getInt("id"))){ //exist 
+		if(mComic.exist(jsonObject.getInt("id"))){ //exist 
 			//balidazioa ok
 
 			mComic.update(comic);

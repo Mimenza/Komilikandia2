@@ -133,7 +133,7 @@ function addLike(id) {
 
 }
 
-function fillSelectGeneroUpdate(generoId) {		
+function fillSelectGeneroUpdate(generoId){		
 
 	$.ajax({
         url: './ApiGeneros',
@@ -143,7 +143,7 @@ function fillSelectGeneroUpdate(generoId) {
            for(let i = 0; i < myJsonObject.length; i++){ 
               myHTML += " <option value='" + myJsonObject[i].id + "'>" + myJsonObject[i].nombre + "</option>"; 
            }
-           document.getElementById("genero_idInsert").innerHTML = myHTML;
+           document.getElementById("genero_id").innerHTML = myHTML;
            document.querySelector('option[value="' + idGenero + '"]').selected = true;
            },
         error: function () {
@@ -208,6 +208,8 @@ function pushDataUpdate()
 		data: {'comic': JSON.stringify(comic)},
 		dataType : 'text',
 		success : function(response) {	
+			console.log("ondo doa");
+			location.reload();
 			
 		},
 		error : function(xhr) {

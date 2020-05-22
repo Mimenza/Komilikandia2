@@ -136,7 +136,11 @@ public void insert(Comic comic) {
         pst.setString(2,comic.getNombre());
         pst.setString(3,comic.getTitulo());
         pst.setInt(4,comic.getNum());
-        pst.setDate(5,(Date) comic.getFecha_publicacion());
+      
+        Date date = new Date(comic.getFecha_publicacion().getTime());
+        
+        pst.setDate(5,date);
+        
         pst.setString(6,comic.getImagen());
         pst.setInt(7,comic.getNum_likes());
         pst.setInt(8,comic.getGenero().getId());
@@ -152,14 +156,20 @@ public void insert(Comic comic) {
 public void update(Comic comic) {
    try {
        final PreparedStatement pst = super.conexion.prepareStatement("update comics set nombre=?, titulo=?, num=?, fecha_publicacion=?, imagen=?, num_likes=?, genero_id=?  where id=?");
-       pst.setInt(1,comic.getId());
-       pst.setString(2,comic.getNombre());
-       pst.setString(3,comic.getTitulo());
-       pst.setInt(4,comic.getNum());
-       pst.setDate(5,(Date) comic.getFecha_publicacion());
-       pst.setString(6,comic.getImagen());
-       pst.setInt(7,comic.getNum_likes());
-       pst.setInt(8,comic.getGenero().getId());
+      
+       pst.setString(1,comic.getNombre());
+       pst.setString(2,comic.getTitulo());
+       pst.setInt(3,comic.getNum());
+       
+       Date date = new Date(comic.getFecha_publicacion().getTime());
+       
+       pst.setDate(4,date);
+       
+       pst.setString(5,comic.getImagen());
+       pst.setInt(6,comic.getNum_likes());
+       pst.setInt(7,comic.getGenero().getId());
+       
+       pst.setInt(8,comic.getId());
        pst.executeUpdate();
     }
     catch (SQLException e) {
