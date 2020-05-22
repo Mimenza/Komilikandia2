@@ -133,24 +133,25 @@ function addLike(id) {
 
 }
 
-function fillSelectGeneroUpdate(generoId){		
-
-	$.ajax({
-        url: './ApiGeneros',
-        dataType: 'json',
-        success: function (myJsonObject) {
-           var myHTML = "";
-           for(let i = 0; i < myJsonObject.length; i++){ 
-              myHTML += " <option value='" + myJsonObject[i].id + "'>" + myJsonObject[i].nombre + "</option>"; 
-           }
-           document.getElementById("genero_id").innerHTML = myHTML;
-           document.querySelector('option[value="' + idGenero + '"]').selected = true;
-           },
-        error: function () {
-            alert("Error");
-          }
-  });
-}	
+ function fillSelectGeneroUpdate(generoId){		
+	//console.log("generos");
+	  $.ajax({
+		  	url:'./ApiGeneros',
+		    	dataType: 'json',	    
+		    	success: function (myJsonObject) {
+		    	console.log(myJsonObject);
+		    		var myHtml = "";
+		    		for (let i = 0; i < myJsonObject.length; i++) {
+		    		   myHtml = "<option value='" + myJsonObject[i].id + "'>" + myJsonObject[i].nombre +" "+ myJsonObject[i].id + "</option>"
+		    		document.getElementById("genero_id").innerHTML+= myHtml;       
+		    		}
+		    		document.querySelector('option[value="'+generoId+'"]').selected=true;
+		    		},
+		    		error: function (xhr) {
+		    				alert("An AJAX error occured: " + xhr.status + " " + xhr.statusText);
+		    	}
+	  	});
+	}	
 
 function fillSelectGeneroInsert() {		
 	//console.log("generos");
