@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	document.getElementById("push").addEventListener("click", () => pushData(myArr));
 	
+
+	
+	
+	
+	
 })
 // --------------------------------------------------------------------------------------
 function createHTML() {
@@ -94,7 +99,9 @@ function showmodal(myJsonObject) {
 	var modalFooterHTML = "<button class='btn btn-lg btn-danger' onclick='deleteComic("
 			+ myJsonObject.id
 			+ ")'> <div style='text-align:center;'><i class='fa fa-trash'></i></div>Del</button>"
-			+ "<a class='btn btn-success btn-lg text-white  text-center' href='UpdateComic'>Update</a>"
+			+ "<button type='button' class='btn btn-success btn-lg text-white  text-center' onclick='fillmodal("
+			+ myJsonObject.id
+			+ ")'> >Update</button>"
 			+ "<button type='button' class='btn btn-primary btn-lg' data-dismiss='modal'>Close</button>";
 
 	document.getElementById("modal-header").innerHTML = modalHeaderHTML;
@@ -128,7 +135,7 @@ function addLike(id) {
 		success : function(myJsonObject) {
 			console.log("bien")
 			createHTML();
-			
+
 
 		},
 		error : function() {
@@ -187,4 +194,80 @@ function pushData(myArr)
    
   console.log(JSON.stringify(myArr));
   
+}
+
+function fillModal(id){
+	console.log("pepe")
+	if (event.target.dataset.id != null) {
+		$.ajax({
+			url : './ApiComic?id=' + event.target.dataset.id,
+			dataType : 'json',
+			success : function(myJsonObject) {
+				
+				
+//				var modal = '<div class="container mt-3">\
+//				<h1>Formulario para crear un Comic</h1>\
+//				<!-- action="ApiInsertComic" -->\
+//						<form method="POST">\
+//							<div class="form-group">\
+//								<label for="id">Id Comic</label>\
+//								<input type="text" class="form-control" id="id" name="id"\
+//								value="${comic.getId}">\
+//							</div>\
+//							<div class="form-group">\
+//								<label for="nombre">Nombre</label>\
+//								<input type="text" class="form-control" id="nombre" name="nombre"\
+//								value="${comic.getNombre}">\
+//							</div>\
+//							<div class="form-group">\
+//								<label for="titulo">Titulo</label>\
+//								<input type="text" class="form-control" id="titulo" name="titulo"\
+//								value="${comic.getTitulo}">\
+//							</div>\
+//							<div class="form-group">\
+//								<label for="num">Num</label>\
+//								<input type="text" class="form-control" id="num" name="num"\
+//								value="${comic.getNum}">\
+//							</div>\
+//							<div class="form-group">\
+//								<label for="fecha_publicacion">Fecha_publicacion</label>\
+//								<input type="text" class="form-control" id="fecha_publicacion" name="fecha_publicacion"\
+//								value="${comic.getFecha_publicacion}">\
+//							</div>\
+//							<div class="form-group">\
+//							*	<label for="imagen">link de la imagen</label>\
+//								<input type="text" class="form-control" id="imagen" name="imagen"\
+//								value="${comic.getImagen}">\							
+//							</div>\
+//							<div class="form-group">\
+//								<label for="num_likes">Num_likes</label>\
+//								<input type="text" class="form-control" id="num_likes" name="num_likes"\
+//								value="${comic.getNum_likes}">\
+//							</div>\							
+//							<div class="form-group">\
+//				                    <label>Select Generos:</label>\
+//				                    <select id="genero_id">\
+//				                        <!-- insert JSON here -->\				                           
+//				                    </select>\
+//				                </div>\							
+//							<button type="button" class="btn text-white" style="background-color:#444444" data-toggle="modal" data-id='+  myJsonObject[i].id + ' data-target="#myModal">Submit</button></div>\										
+//						</form>\
+//					</div>'
+				
+				
+				
+				
+				
+				
+				
+			},
+			error : function(xhr) {
+				alert("An AJAX error occured: " + xhr.status + " "
+						+ xhr.statusText);
+			}
+		});
+	}
+	
+	
+	
 }
