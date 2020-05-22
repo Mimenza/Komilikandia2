@@ -1,7 +1,7 @@
 body {
-   background: url(imagenes/gris.jpg) top left repeat  
+   background: url(imagenes/fondo2.png) top left repeat  
   
-  /* background-color: red; */ 
+   
 
 }
 
@@ -24,4 +24,14 @@ body {
 } */
  
 
+.crear{	
+	margin-right: 26%;
+	
+}
 
+.black{
+	background-color: #282828;
+		height:100%
+		
+		}
+		

@@ -23,7 +23,7 @@
    
   <body>
 
-	<div class="container mt-3">
+	<div class="container black mt-3">
 		<h1>Formulario para crear un Comic</h1>
 
 <!-- action="ApiInsertComic" -->

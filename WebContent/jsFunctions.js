@@ -7,12 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 	document.getElementById("idmainContainer").addEventListener("click",showInfo);
 	
-	document.getElementById("push").addEventListener("click", () => pushData(myArr));
-	
-
-	
-	
-	
+//	document.getElementById("push").addEventListener("click", () => pushData(myArr));
 	
 })
 // --------------------------------------------------------------------------------------
@@ -37,24 +32,13 @@ function createHTML() {
 						myHTMLcode += colOpenHTML; // open col div
 
 						myHTMLcode += '<div class="card" style=" width: 18rem; height:42em;  background-color: #b8e2f2 ">\
-        				<img src="'
-								+ myJsonObject[i].imagen
-								+ '" class="card-img-top" alt="..." height="439">\
+        				<img src="'+ myJsonObject[i].imagen	+ '" class="card-img-top" alt="..." height="439">\
         				<div class="card-body text-center">\
-        				<h5 class="card-title">'
-								+ myJsonObject[i].nombre
-								+ '</h5>\
-        				<p class="card-text">'
-								+ myJsonObject[i].titulo
-								+ '</p>\
-        				<button type="button" class="btn text-white" style="background-color:#444444" data-toggle="modal" data-id='
-								+ myJsonObject[i].id
-								+ ' data-target="#myModal" >Más info</button></div>\
-        				<button type="button" onclick="addLike('
-								+ myJsonObject[i].id
-								+ ')" style="background-color: #F0F6F7FF">   <img src="imagenes/up.png" class=" " width="20%" > : '
-								+ myJsonObject[i].num_likes
-								+ '</button>\
+        				<h5 class="card-title">'+ myJsonObject[i].nombre+ '</h5>\
+        				<p class="card-text">'+ myJsonObject[i].titul+ '</p>\
+        				<button type="button" class="btn text-white" style="background-color:#444444" data-toggle="modal" data-id='+ myJsonObject[i].id+ ' data-target="#myModal" >Más info</button></div>\
+        				<button type="button" onclick="addLike('+ myJsonObject[i].id+ ')" style="background-color: #F0F6F7FF">   <img src="imagenes/up.png" class=" " width="20%" > : '
+								+ myJsonObject[i].num_likes	+ '</button>\
         				</div></div>';
 
 					}
@@ -98,12 +82,13 @@ function showmodal(myJsonObject) {
 			+ myJsonObject.imagen + "'>";
 	var modalFooterHTML = "<button class='btn btn-lg btn-danger' onclick='deleteComic("
 			+ myJsonObject.id
-			+ ")'> <div style='text-align:center;'><i class='fa fa-trash'></i></div>Del</button>"
-			+ "<button type='button' class='btn btn-success btn-lg text-white  text-center' onclick='fillmodal("
-			+ myJsonObject.id
-			+ ")'> >Update</button>"
-			+ "<button type='button' class='btn btn-primary btn-lg' data-dismiss='modal'>Close</button>";
-
+			+ ")'> <div style='text-align:center;'><i class='fa fa-trash'></i></div></button>"
+			
+			+ "<button class='btn btn-lg btn-warning' data-target='#myModal2' data-toggle='modal' data-dismiss='modal' onclick='fillModal(" + myJsonObject.id+ ")'><i class='fa fa-ban'></i></button>"
+			
+			+ "<button type='button' class='btn btn-primary btn-lg' data-dismiss='modal'><i class='fa fa-ban'></i></button>";
+ 	
+	
 	document.getElementById("modal-header").innerHTML = modalHeaderHTML;
 	document.getElementById("modal-body").innerHTML = modalBodyHTML;
 	document.getElementById("modal-footer").innerHTML = modalFooterHTML;
@@ -164,101 +149,96 @@ function fillSelect() {
 	  });
 	}
 
-function pushData(myArr)
-//datuak irakurri eta  array batean gorde
-{
-  var fecha_publicacion = document.getElementById("fecha_publicacion").value;
-  
-  var id = document.getElementById("id").value;
-  
-  var imagen = document.getElementById("imagen").value;
-  
-  var nombre = document.getElementById("nombre").value;
-  
-  var num = document.getElementById("num").value;
-  
-  var num_likes = document.getElementById("num_likes").value;
-  
-  var titulo = document.getElementById("titulo").value;
-  
-  var genero_id = document.getElementById("genero_id").value;  
-  
-    
-
-  var comic = { "fecha_publicacion": fecha_publicacion, "id": id,"num_likes": num_likes, "num": num,"nombre": nombre, "imagen": imagen,"titulo": titulo, "genero_id": genero_id };
-
-  
-
-  myArr.push(comic);
-  
-   
-  console.log(JSON.stringify(myArr));
-  
-}
+//function pushData(myArr)
+////datuak irakurri eta  array batean gorde
+//{
+//  var fecha_publicacion = document.getElementById("fecha_publicacion").value;
+//  
+//  var id = document.getElementById("id").value;
+//  
+//  var imagen = document.getElementById("imagen").value;
+//  
+//  var nombre = document.getElementById("nombre").value;
+//  
+//  var num = document.getElementById("num").value;
+//  
+//  var num_likes = document.getElementById("num_likes").value;
+//  
+//  var titulo = document.getElementById("titulo").value;
+//  
+//  var genero_id = document.getElementById("genero_id").value;  
+//  
+//    
+//
+//  var comic = { "fecha_publicacion": fecha_publicacion, "id": id,"num_likes": num_likes, "num": num,"nombre": nombre, "imagen": imagen,"titulo": titulo, "genero_id": genero_id };
+//
+//  
+//
+//  myArr.push(comic);
+//  
+//   
+//  console.log(JSON.stringify(myArr));
+//  
+//}
 
 function fillModal(id){
 	console.log("pepe")
-	if (event.target.dataset.id != null) {
+	
 		$.ajax({
-			url : './ApiComic?id=' + event.target.dataset.id,
+			url : './ApiComic?id=' + id,
 			dataType : 'json',
 			success : function(myJsonObject) {
 				
+				console.log(myJsonObject.id);
 				
-//				var modal = '<div class="container mt-3">\
-//				<h1>Formulario para crear un Comic</h1>\
-//				<!-- action="ApiInsertComic" -->\
-//						<form method="POST">\
-//							<div class="form-group">\
-//								<label for="id">Id Comic</label>\
-//								<input type="text" class="form-control" id="id" name="id"\
-//								value="${comic.getId}">\
-//							</div>\
-//							<div class="form-group">\
-//								<label for="nombre">Nombre</label>\
-//								<input type="text" class="form-control" id="nombre" name="nombre"\
-//								value="${comic.getNombre}">\
-//							</div>\
-//							<div class="form-group">\
-//								<label for="titulo">Titulo</label>\
-//								<input type="text" class="form-control" id="titulo" name="titulo"\
-//								value="${comic.getTitulo}">\
-//							</div>\
-//							<div class="form-group">\
-//								<label for="num">Num</label>\
-//								<input type="text" class="form-control" id="num" name="num"\
-//								value="${comic.getNum}">\
-//							</div>\
-//							<div class="form-group">\
-//								<label for="fecha_publicacion">Fecha_publicacion</label>\
-//								<input type="text" class="form-control" id="fecha_publicacion" name="fecha_publicacion"\
-//								value="${comic.getFecha_publicacion}">\
-//							</div>\
-//							<div class="form-group">\
-//							*	<label for="imagen">link de la imagen</label>\
-//								<input type="text" class="form-control" id="imagen" name="imagen"\
-//								value="${comic.getImagen}">\							
-//							</div>\
-//							<div class="form-group">\
-//								<label for="num_likes">Num_likes</label>\
-//								<input type="text" class="form-control" id="num_likes" name="num_likes"\
-//								value="${comic.getNum_likes}">\
-//							</div>\							
-//							<div class="form-group">\
-//				                    <label>Select Generos:</label>\
-//				                    <select id="genero_id">\
-//				                        <!-- insert JSON here -->\				                           
-//				                    </select>\
-//				                </div>\							
-//							<button type="button" class="btn text-white" style="background-color:#444444" data-toggle="modal" data-id='+  myJsonObject[i].id + ' data-target="#myModal">Submit</button></div>\										
-//						</form>\
-//					</div>'
+							
+				var modalBodyHTML = "<div class='row justify-content-center'>\
+					<div class='col-6 mt-3'>\
+						<form method='POST'>\
+							<div class='form-group'>\
+								<label for='id' class='text-black'>Id Comic</label> <input type='number'\
+									class='form-control' id='id' name='id' value="+myJsonObject.id+">\
+							</div>\
+							<div class='form-group'>\
+								<label for='nombre' class='text-black'>Nombre</label> <input type='text'\
+									class='form-control' id='nombre' name='nombre'  value="+myJsonObject.nombre+">\
+							</div>\
+							<div class='form-group'>\
+								<label for='titulo' class='text-black'>Titulo</label> <input type='text'\
+									class='form-control' id='titulo' name='titulo' value="+myJsonObject.titulo+">\
+							</div>\
+							<div class='form-group'>\
+								<label for='num' class='text-black'>Num</label> <input type='number'\
+									class='form-control' id='num' name='num' value="+myJsonObject.num+">\
+							</div>\
+							<div class='form-group'>\
+								<label for='fecha_publicacion' class='text-black'>Fecha_publicacion</label> <input\
+									type='date' class='form-control' id='fecha_publicacion'\
+									name='fecha_publicacion'  value="+myJsonObject.fecha_publicacion+">\
+							</div>\
+							<div class='form-group'>\
+								<label for='imagen' class='text-black'>Imagen</label> <input type='text'\
+									class='form-control' id='imagen' name='imagen' value="+myJsonObject.imagen+">\
+							</div>\
+							<div class='form-group'>\
+								<label for='num_likes' class='text-black'>Num_likes</label> <input type='number'\
+									class='form-control' id='num_likes' name='num_likes' value="+myJsonObject.num_likes+">\
+							</div>\
+							<div class='form-group'>\
+                                <label >Select Generos:</label>\
+                                   <select id='genero_id' value="+myJsonObject.nombre+''+myJsonObject.id+"></select>\
+                           </div>\
+							<button id='push' class='btn btn-primary'>Submit</button>\
+							<br><br><br><br><br><br>\
+						</form>\
+					</div>\
+				</div>";
+								
+				document.getElementById("modal-body2").innerHTML = modalBodyHTML;
 				
+				document.getElementById("modal-header2").innerHTML = "<h3>Comic bat aldatzeko formulario</h3>";
 				
-				
-				
-				
-				
+				fillSelect();
 				
 			},
 			error : function(xhr) {
@@ -266,8 +246,6 @@ function fillModal(id){
 						+ xhr.statusText);
 			}
 		});
-	}
-	
 	
 	
 }
