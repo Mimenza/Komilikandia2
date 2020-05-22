@@ -146,7 +146,7 @@ function fillSelect() {
 	    success: function (myJsonObject) {
 	      var myHtml = "";
 	      for (let i = 0; i < myJsonObject.length; i++) {
-	        myHtml = "<option value='" + myJsonObject[i].nombre + "'>" + myJsonObject[i].id + "</option>"
+	        myHtml = "<option value='" + myJsonObject[i].id + "'>" + myJsonObject[i].nombre +" "+ myJsonObject[i].id + "</option>"
 	        
 	        document.getElementById("genero_id").innerHTML += myHtml;       
 	      }
