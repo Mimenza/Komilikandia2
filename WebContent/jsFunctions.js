@@ -331,7 +331,7 @@ function fillModalUpdate(id){
 	
 }
 
-function fillModalConfirm(id){
+function fillModalConfirm(myJsonObject){
 	console.log("modalConfirm")
 									
 			var modalBodyHTML = "<div class='row justify-content-center'>\
