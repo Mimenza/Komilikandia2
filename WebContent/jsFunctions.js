@@ -1,19 +1,17 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-	fillSelect();
-	
-	var myArr = new Array();
+		
+	//var myArr = new Array();
 		
 	createHTML();	
 
 	document.getElementById("idmainContainer").addEventListener("click",showInfo);
 	
-//	document.getElementById("push").addEventListener("click", () => pushData(myArr));
+	
 	
 })
 // --------------------------------------------------------------------------------------
 function createHTML() {
-	$
-			.ajax({
+	$.ajax({
 				url : './ApiComics',
 				dataType : 'json', // specifying here the response type,
 				// there's no need to parse it.
@@ -130,18 +128,20 @@ function addLike(id) {
 
 }
 
-function fillSelect() {		
-	console.log("generos");
+function fillSelect(generoId) {		
+	//console.log("generos");
 	  $.ajax({
 	    url:'./ApiGeneros',
 	    dataType: 'json',	    
 	    success: function (myJsonObject) {
+	    	console.log(myJsonObject);
 	      var myHtml = "";
 	      for (let i = 0; i < myJsonObject.length; i++) {
 	        myHtml = "<option value='" + myJsonObject[i].id + "'>" + myJsonObject[i].nombre +" "+ myJsonObject[i].id + "</option>"
 	        
-	        document.getElementById("genero_id").innerHTML += myHtml;       
+	        document.getElementById("genero_id").innerHTML+= myHtml;       
 	      }
+	      document.querySelector('option[value="'+generoId+'"]').selected=true;
 	    },
 	    error: function (xhr) {
 	      alert("An AJAX error occured: " + xhr.status + " " + xhr.statusText);
@@ -149,37 +149,52 @@ function fillSelect() {
 	  });
 	}
 
-//function pushData(myArr)
-////datuak irakurri eta  array batean gorde
-//{
-//  var fecha_publicacion = document.getElementById("fecha_publicacion").value;
-//  
-//  var id = document.getElementById("id").value;
-//  
-//  var imagen = document.getElementById("imagen").value;
-//  
-//  var nombre = document.getElementById("nombre").value;
-//  
-//  var num = document.getElementById("num").value;
-//  
-//  var num_likes = document.getElementById("num_likes").value;
-//  
-//  var titulo = document.getElementById("titulo").value;
-//  
-//  var genero_id = document.getElementById("genero_id").value;  
-//  
-//    
-//
-//  var comic = { "fecha_publicacion": fecha_publicacion, "id": id,"num_likes": num_likes, "num": num,"nombre": nombre, "imagen": imagen,"titulo": titulo, "genero_id": genero_id };
-//
-//  
-//
-//  myArr.push(comic);
-//  
-//   
-//  console.log(JSON.stringify(myArr));
-//  
-//}
+function pushData(myArr)
+//datuak irakurri eta  array batean gorde
+{
+  var fecha_publicacion = document.getElementById("fecha_publicacion").value;
+  
+  var id = document.getElementById("id").value;
+  
+  var imagen = document.getElementById("imagen").value;
+  
+  var nombre = document.getElementById("nombre").value;
+  
+  var num = document.getElementById("num").value;
+  
+  var num_likes = document.getElementById("num_likes").value;
+  
+  var titulo = document.getElementById("titulo").value;
+  
+  var genero_id = document.getElementById("genero_id").value;  
+  
+    
+
+  var comic = { "fecha_publicacion": fecha_publicacion, "id": id,"num_likes": num_likes, "num": num,"nombre": nombre, "imagen": imagen,"titulo": titulo, "genero_id": genero_id };
+
+  
+
+  //myArr.push(comic);
+  
+   
+  console.log(JSON.stringify(comic));
+  $.ajax({
+	  
+		url : './ApiUpdateComic',
+		type: 'POST',
+		data: {'comic': JSON.stringify(comic)},
+		dataType : 'text',
+		success : function(response) {	
+			
+		},
+		error : function(xhr) {
+			alert("An AJAX error occured: " + xhr.status + " "
+					+ xhr.statusText);
+		}
+		
+  	});
+  
+}
 
 function fillModal(id){
 	console.log("pepe")
@@ -187,25 +202,21 @@ function fillModal(id){
 		$.ajax({
 			url : './ApiComic?id=' + id,
 			dataType : 'json',
-			success : function(myJsonObject) {
-				
-				console.log(myJsonObject.id);
-				
+			success : function(myJsonObject) {				
 							
 				var modalBodyHTML = "<div class='row justify-content-center'>\
 					<div class='col-6 mt-3'>\
-						<form method='POST'>\
 							<div class='form-group'>\
 								<label for='id' class='text-black'>Id Comic</label> <input type='number'\
-									class='form-control' id='id' name='id' value="+myJsonObject.id+">\
+									class='form-control' id='id' name='id' value="+myJsonObject.id+" readonly>\
 							</div>\
 							<div class='form-group'>\
 								<label for='nombre' class='text-black'>Nombre</label> <input type='text'\
-									class='form-control' id='nombre' name='nombre'  value="+myJsonObject.nombre+">\
+									class='form-control' id='nombre' name='nombre'  value='"+myJsonObject.nombre+"'>\
 							</div>\
 							<div class='form-group'>\
 								<label for='titulo' class='text-black'>Titulo</label> <input type='text'\
-									class='form-control' id='titulo' name='titulo' value="+myJsonObject.titulo+">\
+									class='form-control' id='titulo' name='titulo' value='"+myJsonObject.titulo+"'>\
 							</div>\
 							<div class='form-group'>\
 								<label for='num' class='text-black'>Num</label> <input type='number'\
@@ -214,11 +225,11 @@ function fillModal(id){
 							<div class='form-group'>\
 								<label for='fecha_publicacion' class='text-black'>Fecha_publicacion</label> <input\
 									type='date' class='form-control' id='fecha_publicacion'\
-									name='fecha_publicacion'  value="+myJsonObject.fecha_publicacion+">\
+									name='fecha_publicacion'  value='"+myJsonObject.fecha_publicacion+"'>\
 							</div>\
 							<div class='form-group'>\
 								<label for='imagen' class='text-black'>Imagen</label> <input type='text'\
-									class='form-control' id='imagen' name='imagen' value="+myJsonObject.imagen+">\
+									class='form-control' id='imagen' name='imagen' value='"+myJsonObject.imagen+"'>\
 							</div>\
 							<div class='form-group'>\
 								<label for='num_likes' class='text-black'>Num_likes</label> <input type='number'\
@@ -226,19 +237,23 @@ function fillModal(id){
 							</div>\
 							<div class='form-group'>\
                                 <label >Select Generos:</label>\
-                                   <select id='genero_id' value="+myJsonObject.nombre+''+myJsonObject.id+"></select>\
+                                   <select id='genero_id'></select>\
                            </div>\
 							<button id='push' class='btn btn-primary'>Submit</button>\
 							<br><br><br><br><br><br>\
-						</form>\
 					</div>\
 				</div>";
+				//console.log(myJsonObject.titulo);
 								
 				document.getElementById("modal-body2").innerHTML = modalBodyHTML;
 				
 				document.getElementById("modal-header2").innerHTML = "<h3>Comic bat aldatzeko formulario</h3>";
 				
-				fillSelect();
+				fillSelect(myJsonObject.genero.id);
+				
+				
+				document.getElementById('push').addEventListener('click',pushData);
+				concole.log(myJsonObject.genero.id);
 				
 			},
 			error : function(xhr) {
