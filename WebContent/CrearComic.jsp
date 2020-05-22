@@ -23,7 +23,7 @@
 		
 <!-- action="ApiInsertComic" -->
 
-		<form method="POST">
+		
 			<div class="form-group">
 				<label  class="text-white" for="id">Id Comic</label>
 				<input type="text" class="form-control" id="id" name="id">
@@ -62,19 +62,42 @@
 			
 			<div class="form-group">
                     <label class="text-white">Select Generos:</label>
-                    <select id="genero_id">
+                    <select id="genero_idInsert">
                         <!-- insert JSON here -->                           
                     </select>
                 </div>
 			
-			<button  id="push" class="btn btn-primary">Submit</button>
+			<a type = "button" onclick="pushDataInsert()" id="pushInsert"class="btn btn-primary" data-target="#myModal" data-toggle="modal">Submit</a>
 			<a  href="Volver" class="btn btn-warning">volver</a>
-			
-		
-		</form>
+				
 	</div>
    </div>
 	</div>
+
+
+
+
+
+	<div class='modal' id='myModal2'>
+		<div class="modal-dialog modal-lg" >
+			<div class='modal-content'>	
+				<div class='modal-header' id='modal-header2'></div>			
+				
+				<!--Modal body-->
+				<div class='modal-body' id='modal-body2'>
+				
+					<!--js data -->
+				</div>
+
+				
+				
+			</div>
+		</div>
+	</div>
+
+
+
+
 
 
 
@@ -95,9 +118,11 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		
 	<script src="jsFunctions.js"></script>
-		
   </body>
 </html>
+
+
+
 
 
 

@@ -69,7 +69,7 @@ public class ApiUpdateComic extends HttpServlet {
 		
 		comic.setFecha_publicacion(fecha_publicacion);
 
-//		comic.setGenero(jsonObject.get("genero"));
+		comic.setGeneroId(jsonObject.getInt("genero_id"));
 				
 		comic.setImagen(jsonObject.getString("imagen"));
 		comic.setNombre(jsonObject.getString("nombre"));

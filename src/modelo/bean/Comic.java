@@ -74,6 +74,11 @@ public class Comic {
 		return genero;
 	}
 
+	
+	public void setGeneroId(int id) {
+		this.id = id;
+	}
+	
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
