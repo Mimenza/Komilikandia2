@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+
 	fillSelectGeneroInsert()
 			
+
+		
+	//var myArr = new Array();
+		
+
 	createHTML();	
 
 	document.getElementById("idmainContainer").addEventListener("click",showInfo);
@@ -128,25 +134,23 @@ function addLike(id) {
 }
 
 function fillSelectGeneroUpdate(generoId) {		
-	//console.log("generos");
-	  $.ajax({
-	    url:'./ApiGeneros',
-	    dataType: 'json',	    
-	    success: function (myJsonObject) {
-	    	console.log(myJsonObject);
-	      var myHtml = "";
-	      for (let i = 0; i < myJsonObject.length; i++) {
-	        myHtml = "<option value='" + myJsonObject[i].id + "'>" + myJsonObject[i].nombre +" "+ myJsonObject[i].id + "</option>"
-	        
-	        document.getElementById("genero_id").innerHTML+= myHtml;       
-	      }
-	      document.querySelector('option[value="'+generoId+'"]').selected=true;
-	    },
-	    error: function (xhr) {
-	      alert("An AJAX error occured: " + xhr.status + " " + xhr.statusText);
-	    }
-	  });
-	}
+
+	$.ajax({
+        url: './ApiGeneros',
+        dataType: 'json',
+        success: function (myJsonObject) {
+           var myHTML = "";
+           for(let i = 0; i < myJsonObject.length; i++){ 
+              myHTML += " <option value='" + myJsonObject[i].id + "'>" + myJsonObject[i].nombre + "</option>"; 
+           }
+           document.getElementById("genero_idInsert").innerHTML = myHTML;
+           document.querySelector('option[value="' + idGenero + '"]').selected = true;
+           },
+        error: function () {
+            alert("Error");
+          }
+  });
+}	
 
 function fillSelectGeneroInsert() {		
 	//console.log("generos");
@@ -159,7 +163,7 @@ function fillSelectGeneroInsert() {
                myHTML += " <option value='" + myJsonObject[i].id + "'>" + myJsonObject[i].nombre + "</option>"; 
             }
             document.getElementById("genero_idInsert").innerHTML = myHTML;
-            document.querySelector('option[value="' + idGenero + '"]').selected = true;
+            
             },
          error: function () {
              alert("Error");
@@ -315,11 +319,19 @@ function fillModalUpdate(id){
 				
 				document.getElementById("modal-header2").innerHTML = "<h3>Comic bat aldatzeko formulario</h3>";
 				
+
 				fillSelectGeneroUpdate(myJsonObject.genero.id);
 				
 				
 				document.getElementById('push').addEventListener('click',pushDataUpdate);
 				
+
+				fillSelect(myJsonObject.genero.id);
+				
+				
+				document.getElementById('push').addEventListener('click',pushData);
+				concole.log(myJsonObject.genero.id);
+
 				
 			},
 			error : function(xhr) {
