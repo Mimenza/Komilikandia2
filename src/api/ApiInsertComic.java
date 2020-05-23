@@ -103,7 +103,7 @@ public class ApiInsertComic extends HttpServlet {
 			
 			try {
 				mComic.getConexion().close();
-				response.sendRedirect("ApiComics");
+				
 			} catch (SQLException e) {
 				System.out.println("Errorea conexioa ixtean");
 				e.printStackTrace();

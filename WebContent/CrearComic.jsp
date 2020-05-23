@@ -6,6 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -67,7 +68,7 @@
                     </select>
                 </div>
 			
-			<a type = "button" href="Volver" onclick="pushDataInsert()" id="pushInsert"class="btn btn-primary" data-target="#myModal" data-toggle="modal">Submit</a>
+			<a onclick="fillModalConfirm()" data-target='#myModal' data-toggle='modal' class="btn btn-primary"><i class='fa fa-save'></i></a>
 			<a  href="Volver" class="btn btn-warning">volver</a>
 				
 	</div>
@@ -78,22 +79,18 @@
 
 
 
-	<div class='modal' id='myModal2'>
-		<div class="modal-dialog modal-lg" >
-			<div class='modal-content'>	
-				<div class='modal-header' id='modal-header2'></div>			
-				
-				<!--Modal body-->
-				<div class='modal-body' id='modal-body2'>
-				
-					<!--js data -->
-				</div>
-
-				
-				
-			</div>
-		</div>
-	</div>
+	<div class ='modal' id='myModal'>
+          <div class ='modal-dialog'>
+            <div class ='modal-content'>
+              <div class ='modal-header d-flex flex-column' id='modal-header'> 
+              </div>
+              <div class ='modal-body align-self-center' id='modal-body'>
+              </div>
+              <div class='modal-footer' id='modal-footer'>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
 

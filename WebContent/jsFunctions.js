@@ -346,59 +346,42 @@ function fillModalUpdate(id){
 	
 }
 
-function fillModalConfirm(myJsonObject){
+function fillModalConfirm(){
 	console.log("modalConfirm")
-									
-			var modalBodyHTML = "<div class='row justify-content-center'>\
-				<div class='col-6 mt-3'>\
-						<div class='form-group'>\
-							<label for='id' class='text-black'>Id Comic</label> <input type='number'\
-								class='form-control' id='id' name='id' value="+myJsonObject.id+" readonly>\
-						</div>\
-						<div class='form-group'>\
-							<label for='nombre' class='text-black'>Nombre</label> <input type='text'\
-								class='form-control' id='nombre' name='nombre'  value='"+myJsonObject.nombre+"'>\
-						</div>\
-						<div class='form-group'>\
-							<label for='titulo' class='text-black'>Titulo</label> <input type='text'\
-								class='form-control' id='titulo' name='titulo' value='"+myJsonObject.titulo+"'>\
-						</div>\
-						<div class='form-group'>\
-							<label for='num' class='text-black'>Num</label> <input type='number'\
-								class='form-control' id='num' name='num' value="+myJsonObject.num+">\
-						</div>\
-						<div class='form-group'>\
-							<label for='fecha_publicacion' class='text-black'>Fecha_publicacion</label> <input\
-								type='date' class='form-control' id='fecha_publicacion'\
-								name='fecha_publicacion'  value='"+myJsonObject.fecha_publicacion+"'>\
-						</div>\
-						<div class='form-group'>\
-							<label for='imagen' class='text-black'>Imagen</label> <input type='text'\
-								class='form-control' id='imagen' name='imagen' value='"+myJsonObject.imagen+"'>\
-						</div>\
-						<div class='form-group'>\
-							<label for='num_likes' class='text-black'>Num_likes</label> <input type='number'\
-								class='form-control' id='num_likes' name='num_likes' value="+myJsonObject.num_likes+">\
-						</div>\
-						<div class='form-group'>\
-                            <label >Select Generos:</label>\
-                               <select id='genero_id'></select>\
-                       </div>\
-						<button id='push' class='btn btn-primary'>Submit</button>\
-						<br><br><br><br><br><br>\
-				</div>\
-			</div>";
-			//console.log(myJsonObject.titulo);
-							
-			document.getElementById("modal-body2").innerHTML = modalBodyHTML;
-			
-			document.getElementById("modal-header2").innerHTML = "<h3>Comic bat aldatzeko formulario</h3>";
-			
-			fillSelectGeneroUpdate(myJsonObject.genero.id);
-			
-			
-			document.getElementById('push').addEventListener('click',pushDataUpdate);
-					
+	
+	
+	var fecha_publicacion = document.getElementById("fecha_publicacion").value;
+
+	var imagen = document.getElementById("imagen").value;
+
+	var nombre = document.getElementById("nombre").value;
+
+	var num = document.getElementById("num").value;
+
+	var num_likes = document.getElementById("num_likes").value;
+
+	var titulo = document.getElementById("titulo").value;
+
+	var genero_id = document.getElementById("genero_idInsert").value;  
+  
+
+	var comicJSON = { "fecha_publicacion": fecha_publicacion,"num_likes": num_likes, "num": num,"nombre": nombre, "imagen": imagen,"titulo": titulo, "genero_id": genero_id };
+	fillModalConfirmDatos(comicJSON);					
 		
 	};
 
+function fillModalConfirmDatos(myJsonObject){
+	
+	console.log("modalConfirmacion2")
+	
+		var modalHeaderHTML = "<h4 class='modal-title'>" + myJsonObject.nombre + "</h4><br><b><p>" + myJsonObject.titulo + " | </b>" + myJsonObject.num + " Zenbakia</p><br><p>Data: " + myJsonObject.fecha_publicacion + "| Generoa: " + myJsonObject.genero_id + "</p><br><p><b>Like kopurua: " + myJsonObject.num_likes + "</b></p>";
+		var modalBodyHTML = "<img height='100%' width='100%' src='" + myJsonObject.imagen + "'>";
+		var modalFooterHTML = "<a href='Volver' onclick='pushDataInsert()' data-target='#myModal' data-toggle='modal' class='btn-lg btn-primary'><i class='fa fa-save'></i></a><button type='button' class='btn btn-primary btn-lg' data-dismiss='modal'>Close</button>";
+
+		
+		
+		
+		document.getElementById("modal-header").innerHTML = modalHeaderHTML;
+		document.getElementById("modal-body").innerHTML = modalBodyHTML;
+		document.getElementById("modal-footer").innerHTML = modalFooterHTML;
+	}
