@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Volver
  */
+/**
+ * 
+ * @author byend
+ *
+ */
 @WebServlet("/Volver")
 public class Volver extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,7 +29,9 @@ public class Volver extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		/**
+		 * redirekzionatzen du indexera
+		 */
 		request.getRequestDispatcher("index.html").forward(request, response);
 	}
 

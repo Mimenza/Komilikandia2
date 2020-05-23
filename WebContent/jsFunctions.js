@@ -230,7 +230,7 @@ function pushDataInsert()
 	
 var fecha_publicacion = document.getElementById("fecha_publicacion").value;
 
-var id = document.getElementById("id").value;
+//var id = document.getElementById("id").value;
 
 var imagen = document.getElementById("imagen").value;
 
@@ -246,7 +246,7 @@ var genero_id = document.getElementById("genero_idInsert").value;
 
   
 
-var comic = { "fecha_publicacion": fecha_publicacion, "id": id,"num_likes": num_likes, "num": num,"nombre": nombre, "imagen": imagen,"titulo": titulo, "genero_id": genero_id };
+var comic = { "fecha_publicacion": fecha_publicacion,"num_likes": num_likes, "num": num,"nombre": nombre, "imagen": imagen,"titulo": titulo, "genero_id": genero_id };// "id": id,
 
  
 console.log(JSON.stringify(comic));
@@ -329,7 +329,7 @@ function fillModalUpdate(id){
 				document.getElementById('push').addEventListener('click',pushDataUpdate);
 				
 
-				fillSelect(myJsonObject.genero.id);
+		
 				
 				
 				document.getElementById('push').addEventListener('click',pushData);

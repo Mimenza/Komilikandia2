@@ -12,6 +12,12 @@ import modelo.dao.ModeloComic;
 /**
  * Servlet implementation class ApiDelete
  */
+
+/**
+ * 
+ * @author byend
+ *
+ */
 @WebServlet("/ApiDelete")
 public class ApiDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,6 +31,9 @@ public class ApiDelete extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/**
+		 * Apia id-a jasotzen du eta delete metodoa deitzen du eta id-a ematen dio, ondoren conexioa ixten da
+		 */
 		int id=Integer.parseInt(request.getParameter("id"));
 		
 		ModeloComic mComic = new ModeloComic();

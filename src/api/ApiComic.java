@@ -14,7 +14,11 @@ import org.json.JSONObject;
 
 import modelo.bean.Comic;
 import modelo.dao.ModeloComic;
-
+/**
+ *    
+ * @author byend
+ *
+ */
 @WebServlet("/ApiComic")
 public class ApiComic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,6 +30,11 @@ public class ApiComic extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
+		/**
+		 * Atal honetan apiari id bat etortzen zaio, modelo comic bat sortzen du ,eta mComic.get deitzen dio eta id-a pasatzen dio , ondoren jasotzen duena 
+		 * jsonString bariablean gordetzen du eta outprint eta flush ekin json-a bidaltzen du
+		 */
+		
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		ModeloComic mComic = new ModeloComic();

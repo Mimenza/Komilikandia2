@@ -14,7 +14,11 @@ import org.json.JSONStringer;
 
 import modelo.bean.Comic;
 import modelo.dao.ModeloComic;
-
+/**
+ * 
+ * @author byend
+ *
+ */
 @WebServlet("/ApiComics")
 public class ApiComics extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,6 +30,13 @@ public class ApiComics extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		/**
+		 * Mcomic sortzen du eta comic beteko den arraylist bat, ondoren getall metodoa deitzen dio eta datorren comic guztiak jsonString bariablean gordetzen dira , eta berriro out.print eta flush.ekin 
+		 * bidaltzen dira
+		 * 
+		 */
+		
 		ModeloComic mComic = new ModeloComic();
 		ArrayList<Comic> comics = mComic.getAll();
 

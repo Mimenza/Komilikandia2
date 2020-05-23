@@ -1,7 +1,9 @@
 package modelo.bean;
 
 public class Genero {
-
+/**
+ * Generoa bere atributoekin eta get-set
+ */
 	private int id;
 	private String nombre;
 

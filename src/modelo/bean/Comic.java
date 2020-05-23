@@ -3,7 +3,9 @@ package modelo.bean;
 import java.util.Date;
 
 public class Comic {
-
+	/**
+	 * Comic bere atributoekin eta get-set
+	 */
 	private int id;
 	private String nombre;
 	private String titulo;

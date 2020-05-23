@@ -20,6 +20,12 @@ import modelo.dao.ModeloGenero;
 /**
  * Servlet implementation class ApiGeneros
  */
+
+/**
+ * 
+ * @author byend
+ *
+ */
 @WebServlet("/ApiGeneros")
 public class ApiGeneros extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,6 +38,10 @@ public class ApiGeneros extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/**
+		 * Apia generos beteko den arraylist bat sortzen du eta modelo generos-en dagoen selectall metodoa-ri deitzen dio eta honek genero guztiak  itzultzen dio , ondoren bidaltzen da  
+		 */
+		
 		ModeloGenero mGenero = new ModeloGenero();
 		ArrayList<Genero> generos = mGenero.selectAll();
 

@@ -20,7 +20,11 @@ import modelo.dao.ModeloComic;
 
 
 
-
+/**
+ * 
+ * @author byend
+ *
+ */
 @WebServlet("/ApiInsertComic")
 public class ApiInsertComic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,6 +45,12 @@ public class ApiInsertComic extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/**
+		 * Apia comic jsona jasotzen du, object bat bihurtzen du eta comic berri bat sortzen du eta objetuaren datu guztiak han gordetzen ditu , berdina generoarekin, ondoren modeloComic sortzen du eta insert metodoari 
+		 * deitzen dio comic pasatzen .
+		 * 
+		 */
 		
 //		datuak jaso
 		request.setCharacterEncoding("UTF-8"); //enieak eta ondo irakurtzeko
@@ -75,7 +85,7 @@ public class ApiInsertComic extends HttpServlet {
 		
 		comic.setGenero(genero);
 		
-		comic.setId(jsonObject.getInt("id"));
+//		comic.setId(jsonObject.getInt("id"));
 		comic.setImagen(jsonObject.getString("imagen"));
 		comic.setNombre(jsonObject.getString("nombre"));
 		comic.setNum(jsonObject.getInt("num"));
@@ -93,6 +103,7 @@ public class ApiInsertComic extends HttpServlet {
 			
 			try {
 				mComic.getConexion().close();
+				response.sendRedirect("ApiComics");
 			} catch (SQLException e) {
 				System.out.println("Errorea conexioa ixtean");
 				e.printStackTrace();
@@ -105,7 +116,7 @@ public class ApiInsertComic extends HttpServlet {
 //			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		//	response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Balidatzean errorea");
 	//	}
-		response.sendRedirect("ApiComics");
+		
 	}
 }
 

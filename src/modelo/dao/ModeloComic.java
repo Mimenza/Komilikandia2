@@ -11,8 +11,15 @@ import modelo.bean.Comic;
 import modelo.bean.Genero;
 
 public class ModeloComic extends Conector{
-	
+	/**
+	 * 
+	 * @return
+	 */
 public ArrayList<Comic> getAll(){
+	/**
+	 * Arraylist bat sortzen da , kontzulta eginten denean datuak rs-en gordetzen dira eta set bidez komikian gordetzen da , berdina generoarekin
+	 */
+	
 		ArrayList<Comic> comics = new ArrayList<Comic>();
 		
 		try {
@@ -49,6 +56,10 @@ public ArrayList<Comic> getAll(){
 	
 
 public Comic get(int idComic) {
+	
+	/**
+	 * Arraylist bat sortzen da , kontzulta eginten denean datuak rs-en gordetzen dira eta set bidez komikian gordetzen da , berdina generoarekin
+	 */
 		try {
 			PreparedStatement pst = super.conexion.prepareStatement("select * from comics inner join generos on generos.id=comics.genero_id where comics.id=?");
 			pst.setInt(1, idComic);
@@ -87,7 +98,9 @@ public Comic get(int idComic) {
 
 		
 public void addlike(int comicId) {
-		
+	/**
+	 * kontsulta batekin id pasatzen zaio eta comic bat jasotzen da , ondoren komikiaren likes +1 egiten dute , ondoren update bat egiten da 
+	 */
 		try {
 				PreparedStatement preparedStatement = conexion.prepareStatement("select num_likes from comics where comics.id =?");
 				preparedStatement.setInt(1, comicId);
@@ -115,7 +128,9 @@ public void addlike(int comicId) {
 	
 
 public void delete (int comicId) {
-		
+		/**
+		 * kontsulta batekin id pasatuta comic bat borratzen da 
+		 */
 		try {
 			PreparedStatement preparedStatement = conexion.prepareStatement("delete from comics where id =?");
 			preparedStatement.setInt(1, comicId);
@@ -130,9 +145,12 @@ public void delete (int comicId) {
 	
 
 public void insert(Comic comic) {
+	/**
+	 * kontsultari comic bat pasatzen zaio eta honek insert egiten du datu basean
+	 */
     try {
         final PreparedStatement pst = super.conexion.prepareStatement("insert into comics (id, nombre, titulo, num, fecha_publicacion, imagen, num_likes, genero_id) values (?,?,?,?,?,?,?,?)");
-        pst.setInt(1,comic.getId());
+        pst.setInt(1,0);
         pst.setString(2,comic.getNombre());
         pst.setString(3,comic.getTitulo());
         pst.setInt(4,comic.getNum());
@@ -154,6 +172,9 @@ public void insert(Comic comic) {
 
 
 public void update(Comic comic) {
+	/**
+	 * kontsultari comic bat pasatzen zaio eta honek update egiten du datu basean
+	 */
    try {
        final PreparedStatement pst = super.conexion.prepareStatement("update comics set nombre=?, titulo=?, num=?, fecha_publicacion=?, imagen=?, num_likes=?, genero_id=?  where id=?");
       
@@ -179,7 +200,9 @@ public void update(Comic comic) {
 
 
 public boolean exist(int comicId) {
-	
+	/**
+	 * kontsultari pasatzen zaio id bat eta begiratzen du ea id errepikatzen den datubasean true edo false erantzuten
+	 */
 		try {
 			PreparedStatement pst = conexion.prepareStatement("select id from comics where id =?");
 			pst.setInt(1, comicId);

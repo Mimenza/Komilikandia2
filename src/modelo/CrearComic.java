@@ -26,7 +26,9 @@ public class CrearComic extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		/*
+		 * redirekazionatzen du CrearComic.era
+		 */
 		request.getRequestDispatcher("CrearComic.jsp").forward(request, response);
 	}
 

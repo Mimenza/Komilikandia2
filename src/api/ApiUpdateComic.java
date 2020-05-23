@@ -42,6 +42,12 @@ public class ApiUpdateComic extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/**
+		 * Apia comic jsona jasotzen du, object bat bihurtzen du eta comic berri bat sortzen du eta objetuaren datu guztiak han gordetzen ditu , berdina generoarekin, ondoren modeloComic sortzen du eta if exist ondo badoa 
+		 *  update metodoari deitzen dio comic pasatzen .
+		 * 
+		 */
+		
 //		datuak jaso
 		request.setCharacterEncoding("UTF-8"); //enieak eta ondo irakurtzeko
 		String jsonComic = request.getParameter("comic");

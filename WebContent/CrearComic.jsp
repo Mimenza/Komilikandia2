@@ -24,10 +24,10 @@
 <!-- action="ApiInsertComic" -->
 
 		
-			<div class="form-group">
+			<!-- <div class="form-group">
 				<label  class="text-white" for="id">Id Comic</label>
 				<input type="text" class="form-control" id="id" name="id">
-			</div>
+			</div> -->
 
 			<div class="form-group">
 				<label class="text-white" for="nombre">Nombre</label>
@@ -67,7 +67,7 @@
                     </select>
                 </div>
 			
-			<a type = "button" onclick="pushDataInsert()" id="pushInsert"class="btn btn-primary" data-target="#myModal" data-toggle="modal">Submit</a>
+			<a type = "button" href="Volver" onclick="pushDataInsert()" id="pushInsert"class="btn btn-primary" data-target="#myModal" data-toggle="modal">Submit</a>
 			<a  href="Volver" class="btn btn-warning">volver</a>
 				
 	</div>

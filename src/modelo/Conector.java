@@ -9,7 +9,9 @@ import java.sql.SQLException;
 public class Conector {
 	
 	protected Connection conexion;
-
+/**
+ * datu basearen konexioa 
+ */
 	
 	protected Conector() {
 			try {

@@ -12,6 +12,12 @@ import modelo.dao.ModeloComic;
 /**
  * Servlet implementation class apiLike
  */
+
+/**
+ * 
+ * @author byend
+ *
+ */
 @WebServlet("/ApiLike")
 public class ApiLike extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +30,10 @@ public class ApiLike extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/**
+		 * Apia id bat jasotze du eta modeloComic-aren addlike metodoari deitzen dio id pasatzen.
+		 */
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
